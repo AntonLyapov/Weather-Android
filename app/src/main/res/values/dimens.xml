@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MainActivity -->
+
+    <!-- MainActivity / WeatherDayViewHolder -->
+    <dimen name="activity_weather_weather_day_item_margin">10dp</dimen>
+    <dimen name="activity_weather_weather_day_item_padding">8dp</dimen>
+    <dimen name="activity_weather_weather_day_item_day_text_size">30sp</dimen>
+    <dimen name="activity_weather_weather_day_item_description_text_size">25sp</dimen>
+    <dimen name="activity_weather_weather_day_item_hours_margin">8sp</dimen>
+
+    <!-- MainActivity / WeatherHourViewHolder -->
+    <dimen name="activity_weather_weather_hour_item_margin">5dp</dimen>
+    <dimen name="activity_weather_weather_hour_item_padding">8dp</dimen>
+    <dimen name="activity_weather_weather_hour_item_icon_size">50dp</dimen>
+    <dimen name="activity_weather_weather_hour_item_hour_text_size">20sp</dimen>
+    <dimen name="activity_weather_weather_hour_item_description_text_size">22sp</dimen>
+</resources>

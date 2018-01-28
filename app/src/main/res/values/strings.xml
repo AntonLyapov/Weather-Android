@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Weather-Android</string>
+
+    <string name="activity_weather_error_no_internet_connection">Please check your Internet connection</string>
+    <string name="activity_weather_error_retry_button_title">Retry</string>
+    <string name="activity_weather_weather_day_item_temperature">%1$.0f°C / %2$.0f°C</string>
+    <string name="activity_weather_weather_hour_item_temperature">%1$.0f°C</string>
+    <string name="activity_weather_weather_hour_item_icon_path">http://openweathermap.org/img/w/%1$s.png</string>
+
+    <string name="weather_config_city">Sofia</string>
+    <string name="weather_config_country_code">BG</string>
+    <string name="weather_config_units">metric</string>
+</resources>
