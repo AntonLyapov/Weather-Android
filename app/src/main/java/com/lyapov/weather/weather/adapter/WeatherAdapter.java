@@ -58,15 +58,19 @@ public class WeatherAdapter extends BaseRecyclerAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof WeatherDayViewHolder) {
-            List<ForecastEntry> forecastEntries = (List<ForecastEntry>) getItem(position);
-
-            WeatherDayViewHolder weatherViewHolder = (WeatherDayViewHolder) holder;
-            weatherViewHolder.setData(forecastEntries);
+            setWeatherDayViewHolder((WeatherDayViewHolder) holder, position);
         } else if (holder instanceof WeatherHourViewHolder) {
-            ForecastEntry forecastEntry = (ForecastEntry) getItem(position);
-
-            WeatherHourViewHolder weatherHourViewHolder = (WeatherHourViewHolder) holder;
-            weatherHourViewHolder.setData(forecastEntry);
+            setWeatherHourViewHolder((WeatherHourViewHolder) holder, position);
         }
+    }
+
+    private void setWeatherDayViewHolder(WeatherDayViewHolder viewHolder, int position) {
+        List<ForecastEntry> forecastEntries = (List<ForecastEntry>) getItem(position);
+        viewHolder.setData(forecastEntries);
+    }
+
+    private void setWeatherHourViewHolder(WeatherHourViewHolder viewHolder, int position) {
+        ForecastEntry forecastEntry = (ForecastEntry) getItem(position);
+        viewHolder.setData(forecastEntry);
     }
 }

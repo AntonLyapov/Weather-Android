@@ -9,4 +9,5 @@ package com.lyapov.weather.data;
  *   ****************************************************************
  */
 public interface WeatherDataSource {
+
 }

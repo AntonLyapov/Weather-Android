@@ -1,7 +1,7 @@
 package com.lyapov.weather.di;
 
-import com.lyapov.weather.data.remote.APIService;
-import com.lyapov.weather.data.remote.APIServiceFactory;
+import com.lyapov.weather.data.remote.WeatherAPIService;
+import com.lyapov.weather.data.remote.WeatherAPIServiceFactory;
 import com.lyapov.weather.data.remote.WeatherRemoteDataSource;
 import com.lyapov.weather.weather.WeatherPresenter;
 
@@ -16,14 +16,14 @@ import com.lyapov.weather.weather.WeatherPresenter;
 public class DI {
 
     public static WeatherPresenter provideWeatherPresenter() {
-        return new WeatherPresenter(provideRemoteDataSource());
+        return new WeatherPresenter(provideRemoteWeatherDataSource());
     }
 
-    public static APIService provideApiService() {
-        return new APIServiceFactory().createApiService();
+    public static WeatherAPIService provideWeatherAPIService() {
+        return new WeatherAPIServiceFactory().createWeatherAPIService();
     }
 
-    public static WeatherRemoteDataSource provideRemoteDataSource(){
+    public static WeatherRemoteDataSource provideRemoteWeatherDataSource(){
         return WeatherRemoteDataSource.getInstance();
     }
 }

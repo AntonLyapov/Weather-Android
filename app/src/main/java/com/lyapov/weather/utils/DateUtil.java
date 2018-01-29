@@ -14,6 +14,10 @@ import java.util.Date;
  */
 public class DateUtil {
 
+    private DateUtil() {
+
+    }
+
     /**
      * Get day of year from timestamp
      * @param timeAsSeconds timestamp in seconds

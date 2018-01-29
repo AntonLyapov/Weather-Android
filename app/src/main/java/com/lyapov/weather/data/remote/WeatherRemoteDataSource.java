@@ -18,18 +18,20 @@ import io.reactivex.Observable;
  *   ****************************************************************
  */
 public class WeatherRemoteDataSource implements WeatherDataSource {
-    private static WeatherRemoteDataSource mInstance;
-    private APIService apiService;
 
-    private WeatherRemoteDataSource(APIService apiService) {
-        this.apiService = apiService;
+    private static WeatherRemoteDataSource mInstance;
+
+    private WeatherAPIService weatherAPIService;
+
+    private WeatherRemoteDataSource(WeatherAPIService weatherAPIService) {
+        this.weatherAPIService = weatherAPIService;
     }
 
     public static WeatherRemoteDataSource getInstance() {
         if (mInstance == null) {
             synchronized (WeatherRemoteDataSource.class) {
                 if (mInstance == null) {
-                    mInstance = new WeatherRemoteDataSource(DI.provideApiService());
+                    mInstance = new WeatherRemoteDataSource(DI.provideWeatherAPIService());
                 }
             }
         }
@@ -40,6 +42,6 @@ public class WeatherRemoteDataSource implements WeatherDataSource {
     public Observable<WeatherData> getWeatherData(String city, String countryCode, String units) {
         String query = String.format(Locale.US, "%s,%s", city, countryCode);
 
-        return apiService.getWeatherForecast(BuildConfig.WEATHER_API_KEY, query, units);
+        return weatherAPIService.getWeatherForecast(BuildConfig.WEATHER_API_KEY, query, units);
     }
 }

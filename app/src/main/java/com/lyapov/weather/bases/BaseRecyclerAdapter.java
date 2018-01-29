@@ -27,7 +27,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         <T> void onRecycleItemClick(T object);
     }
 
-    public interface  OnRecyclerItemClickListener {
+    public interface OnRecyclerItemClickListener {
         void onRecyclerItemClick(View view, int position);
     }
 
@@ -233,6 +233,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Get index of object
+     *
      * @param object
      * @return
      */
@@ -261,10 +262,11 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Clear and add all
+     *
      * @param objects
      * @param <T>
      */
-    public <T> void clearAndAddAll(List<T> objects){
+    public <T> void clearAndAddAll(List<T> objects) {
         mObjects.clear();
         mObjects.addAll(objects);
 
@@ -274,6 +276,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Contains object
+     *
      * @param object
      * @return
      */
@@ -284,6 +287,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Get objects
+     *
      * @param <T>
      * @return
      */
@@ -294,6 +298,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Sort with comparator
+     *
      * @param comparator
      */
     public void sort(Comparator<Object> comparator) {
@@ -304,6 +309,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Get context
+     *
      * @return
      */
     public Context getContext() {
@@ -313,6 +319,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Set on recycler item click listener
+     *
      * @param listener
      */
     public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener listener) {
@@ -322,6 +329,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
     /**
      * Get view
+     *
      * @param layoutResId
      * @param parent
      * @return

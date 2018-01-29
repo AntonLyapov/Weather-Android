@@ -14,7 +14,7 @@ import retrofit2.http.Query;
  *   *                                                              *
  *   ****************************************************************
  */
-public interface APIService {
+public interface WeatherAPIService {
 
     @GET("forecast")
     Observable<WeatherData> getWeatherForecast(

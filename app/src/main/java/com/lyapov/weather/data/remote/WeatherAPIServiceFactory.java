@@ -25,10 +25,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *   *                                                              *
  *   ****************************************************************
  */
-public class APIServiceFactory {
+public class WeatherAPIServiceFactory {
+
     private final Retrofit retrofit;
 
-    public APIServiceFactory() {
+    public WeatherAPIServiceFactory() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.WEATHER_API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -37,9 +38,8 @@ public class APIServiceFactory {
                 .build();
     }
 
-
-    public APIService createApiService() {
-        return retrofit.create(APIService.class);
+    public WeatherAPIService createWeatherAPIService() {
+        return retrofit.create(WeatherAPIService.class);
     }
 
     @NonNull

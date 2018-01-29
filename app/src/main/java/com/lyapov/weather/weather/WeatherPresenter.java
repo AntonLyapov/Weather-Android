@@ -17,7 +17,6 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /*
@@ -68,41 +67,36 @@ public class WeatherPresenter implements MvpPresenter<WeatherView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(__ -> mWeatherView.showLoading())
                 .doOnTerminate(() -> mWeatherView.hideLoading())
-                .subscribe(weatherData -> {
-                    test(weatherData);
-                }, throwable -> mWeatherView.showError(throwable));
+                .subscribe(this::test, throwable -> mWeatherView.showError(throwable));
     }
 
     private void test(WeatherData weatherData) {
-                Observable.fromArray(weatherData.getList())
-                        .map(new Function<List<ForecastEntry>, List<List<ForecastEntry>>>() {
-                            @Override
-                            public List<List<ForecastEntry>> apply(List<ForecastEntry> forecastEntries) throws Exception {
-                                HashMap<Integer, List<ForecastEntry>> dayForecastEntryMap = new HashMap<>();
+        Observable.fromArray(weatherData.getList())
+                .map(forecastEntries -> {
+                    HashMap<Integer, List<ForecastEntry>> dayForecastEntryMap = new HashMap<>();
 
-                                for (ForecastEntry forecastEntry : forecastEntries) {
-                                    int day = DateUtil.getDayOfYear(forecastEntry.getDate());
+                    for (ForecastEntry forecastEntry : forecastEntries) {
+                        int day = DateUtil.getDayOfYear(forecastEntry.getDate());
 
-                                    List<ForecastEntry> forecastForDay = dayForecastEntryMap.get(day);
-                                    if (forecastForDay == null) {
-                                        forecastEntries = new ArrayList<>();
-                                        dayForecastEntryMap.put(day, forecastEntries);
-                                    }
+                        List<ForecastEntry> forecastForDay = dayForecastEntryMap.get(day);
+                        if (forecastForDay == null) {
+                            forecastEntries = new ArrayList<>();
+                            dayForecastEntryMap.put(day, forecastEntries);
+                        }
 
-                                    forecastEntries.add(forecastEntry);
-                                }
+                        forecastEntries.add(forecastEntry);
+                    }
 
-                                List<Integer> keys = new ArrayList<>(dayForecastEntryMap.keySet());
-                                Collections.sort(keys);
+                    List<Integer> keys = new ArrayList<>(dayForecastEntryMap.keySet());
+                    Collections.sort(keys);
 
-                                List<List<ForecastEntry>> result = new ArrayList<>();
-                                for (Integer key : keys) {
-                                    result.add(dayForecastEntryMap.get(key));
-                                }
+                    List<List<ForecastEntry>> result = new ArrayList<>();
+                    for (Integer key : keys) {
+                        result.add(dayForecastEntryMap.get(key));
+                    }
 
-                                return result;
-                            }
-                        })
+                    return result;
+                })
                 .subscribe(forecastEntries -> mWeatherView.showData(forecastEntries));
     }
 }

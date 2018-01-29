@@ -17,14 +17,21 @@ import com.lyapov.weather.WeatherApplication;
 public final class NetworkUtil {
 
     private NetworkUtil() {
-        // no instances allowed
+
     }
 
+    /**
+     * Check network
+     *
+     * @return
+     */
     public static boolean isNetworkConnected() {
-        final ConnectivityManager connectivityManager =
-                (ConnectivityManager) WeatherApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-    }
+        ConnectivityManager connectivityManager = (ConnectivityManager) WeatherApplication.getContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        NetworkInfo networkInfo = connectivityManager != null ?
+                connectivityManager.getActiveNetworkInfo() : null;
+
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
 }
